@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/599350404261372945/aa903d4f36eb45aca40e3608770a96df/artifacts
+end_time: 1733646062525
+entry_point_name: ''
+experiment_id: '599350404261372945'
+lifecycle_stage: active
+run_id: aa903d4f36eb45aca40e3608770a96df
+run_name: big-mare-751
+run_uuid: aa903d4f36eb45aca40e3608770a96df
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1733646052086
+status: 3
+tags: []
+user_id: mohsi

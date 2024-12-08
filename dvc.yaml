@@ -1,0 +1,8 @@
+stages:
+  train:
+    cmd: python models/train.py
+    deps:
+      - models/train.py
+    outs:
+      - data/weather_data.csv
+      - models/latest_model.txt

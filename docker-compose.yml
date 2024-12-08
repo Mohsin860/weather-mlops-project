@@ -1,0 +1,56 @@
+version: '3'
+
+services:
+  mlflow:
+    image: python:3.9-slim
+    command: mlflow server --host 0.0.0.0 --port 5000
+    ports:
+      - "5000:5000"
+    networks:
+      - mlops-network
+
+  backend:
+    build: ./backend
+    ports:
+      - "8000:8000"
+    depends_on:
+      - mlflow
+    networks:
+      - mlops-network
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+    networks:
+      - mlops-network
+
+  airflow-webserver:
+    image: apache/airflow:2.7.1
+    command: webserver
+    ports:
+      - "8080:8080"
+    environment:
+      - AIRFLOW__CORE__EXECUTOR=LocalExecutor
+      - AIRFLOW__CORE__SQL_ALCHEMY_CONN=sqlite:////usr/local/airflow/airflow.db
+    volumes:
+      - ./airflow/dags:/usr/local/airflow/dags
+    networks:
+      - mlops-network
+
+  airflow-scheduler:
+    image: apache/airflow:2.7.1
+    command: scheduler
+    environment:
+      - AIRFLOW__CORE__EXECUTOR=LocalExecutor
+      - AIRFLOW__CORE__SQL_ALCHEMY_CONN=sqlite:////usr/local/airflow/airflow.db
+    volumes:
+      - ./airflow/dags:/usr/local/airflow/dags
+    networks:
+      - mlops-network
+
+networks:
+  mlops-network:
+    driver: bridge
