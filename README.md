@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Weather Prediction MLOps Project
 
 ## Project Overview
@@ -255,3 +256,7 @@ This project is licensed under the MIT License.
 - FastAPI documentation
 - React documentation
 - MLFlow documentation
+=======
+# weather-mlops-project
+This is full stack application to predict temperature using Mlops concepts and steps
+>>>>>>> ca21314c05f61b8faf57d623ba238d5317e1de79
